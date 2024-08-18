@@ -11,6 +11,8 @@ function reducer(state, action) {
   switch (action.type) {
     case "openAccount":
       return { ...state, balance: 500, isActive: true, afterOpenActive: false };
+    case "deposit":
+      return { ...state, balance: state.balance + 150 };
     default:
       throw new Error("Action unkonwn");
   }
@@ -39,7 +41,12 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={afterOpenActive}>
+        <button
+          onClick={() => {
+            dispatch({ type: "deposit" });
+          }}
+          disabled={afterOpenActive}
+        >
           Deposit 150
         </button>
       </p>
