@@ -13,13 +13,17 @@ function reducer(state, action) {
       return { ...state, balance: 500, isActive: true, afterOpenActive: false };
     case "deposit":
       return { ...state, balance: state.balance + 150 };
+    case "withdraw":
+      return { ...state, balance: state.balance - 50 };
+    case "loan":
+      return { ...state, loan: 5000, balance: state.balance + 5000 };
     default:
       throw new Error("Action unkonwn");
   }
 }
 
 export default function App() {
-  const [{ balance, isActive, afterOpenActive }, dispatch] = useReducer(
+  const [{ balance, isActive, afterOpenActive, loan }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -28,7 +32,7 @@ export default function App() {
     <div className="App">
       <h1>useReducer Bank Account</h1>
       <p>Balance: {balance}</p>
-      <p>Loan: X</p>
+      <p>Loan: {loan}</p>
 
       <p>
         <button
@@ -51,12 +55,22 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={afterOpenActive}>
+        <button
+          onClick={() => {
+            dispatch({ type: "withdraw" });
+          }}
+          disabled={afterOpenActive}
+        >
           Withdraw 50
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={afterOpenActive}>
+        <button
+          onClick={() => {
+            dispatch({ type: "loan" });
+          }}
+          disabled={afterOpenActive}
+        >
           Request a loan of 5000
         </button>
       </p>
