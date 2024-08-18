@@ -4,6 +4,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   isActive: false,
+  afterOpenActive: true,
 };
 
 function reducer(state, action) {
@@ -16,7 +17,10 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [{ balance }, dispatch] = useReducer(reducer, initialState);
+  const [{ balance, isActive, afterOpenActive }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   return (
     <div className="App">
@@ -29,33 +33,33 @@ export default function App() {
           onClick={() => {
             dispatch({ type: "openAccount" });
           }}
-          disabled={false}
+          disabled={isActive}
         >
           Open account
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={afterOpenActive}>
           Deposit 150
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={afterOpenActive}>
           Withdraw 50
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={afterOpenActive}>
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={afterOpenActive}>
           Pay loan
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button onClick={() => {}} disabled={afterOpenActive}>
           Close account
         </button>
       </p>
