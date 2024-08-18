@@ -17,6 +17,8 @@ function reducer(state, action) {
       return { ...state, balance: state.balance - 50 };
     case "loan":
       return { ...state, loan: 5000, balance: state.balance + 5000 };
+    case "payLoan":
+      return { ...state, loan: 0, balance: state.balance - state.loan };
     default:
       throw new Error("Action unkonwn");
   }
@@ -75,7 +77,12 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={afterOpenActive}>
+        <button
+          onClick={() => {
+            dispatch({ type: "payLoan" });
+          }}
+          disabled={afterOpenActive}
+        >
           Pay loan
         </button>
       </p>
