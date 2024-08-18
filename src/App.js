@@ -10,7 +10,7 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "openAccount":
-      return { ...state, balance: 500 };
+      return { ...state, balance: 500, isActive: true, afterOpenActive: false };
     default:
       throw new Error("Action unkonwn");
   }
